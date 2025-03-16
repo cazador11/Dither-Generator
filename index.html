@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Image Dithering</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Interactive Image Dithering</h1>
+    </header>
+    
+    <main>
+        <section class="upload-section">
+            <div id="drop-area">
+                <p>Drag & drop an image here or</p>
+                <input type="file" id="file-input" accept="image/*">
+                <label for="file-input" class="file-input-label">Select a file</label>
+                <p class="file-info">Supported formats: JPG, PNG, GIF, BMP</p>
+            </div>
+        </section>
+
+        <section class="controls-section">
+            <div class="control-group">
+                <h3>Dithering Algorithm</h3>
+                <select id="algorithm-select">
+                    <option value="floyd-steinberg">Floyd-Steinberg</option>
+                    <option value="bayer">Bayer Matrix</option>
+                    <option value="ordered">Ordered</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <h3>Color Palette</h3>
+                <select id="palette-select">
+                    <option value="1bit">1-bit Monochrome</option>
+                    <option value="cga">4-color CGA</option>
+                    <option value="websafe">8-bit Web-safe</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <h3>Threshold</h3>
+                <input type="range" id="threshold-slider" min="0" max="255" value="128">
+                <span id="threshold-value">128</span>
+            </div>
+
+            <div class="control-group">
+                <h3>Resolution Scale</h3>
+                <input type="range" id="scale-slider" min="10" max="100" value="100">
+                <span id="scale-value">100%</span>
+            </div>
+
+            <button id="process-btn" class="primary-btn" disabled>Process Image</button>
+            <button id="download-btn" class="secondary-btn" disabled>Download Result</button>
+        </section>
+
+        <section class="preview-section">
+            <div class="canvas-container">
+                <h3>Original</h3>
+                <canvas id="original-canvas"></canvas>
+                <div id="original-loader" class="loader hidden"></div>
+            </div>
+            <div class="canvas-container">
+                <h3>Dithered</h3>
+                <canvas id="dithered-canvas"></canvas>
+                <div id="dithered-loader" class="loader hidden"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Created with HTML5 Canvas and JavaScript</p>
+    </footer>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Error</h3>
+            <p id="error-message">An error occurred. Please try again.</p>
+        </div>
+    </div>
+
+    <script src="dithering.js"></script>
+    <script src="app.js"></script>
+    <script src="test.js"></script>
+</body>
+</html> 
